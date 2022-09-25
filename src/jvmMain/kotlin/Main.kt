@@ -4,16 +4,15 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldColors
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.res.loadImageBitmap
 import androidx.compose.ui.text.input.TextFieldValue
@@ -27,7 +26,7 @@ import java.net.URL
 fun App()
 {
     MaterialTheme {
-        val textState = remember {
+        val hostname = remember {
             mutableStateOf(TextFieldValue())
         }
 
@@ -35,20 +34,41 @@ fun App()
             modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.Center
         ) {
+            Text("Enter the Redis hostname:")
+
             TextField(
-                value = textState.value,
+                value = hostname.value,
                 onValueChange = {
-                    textState.value = it
+                    hostname.value = it
                 }
             )
 
-            Text("The textfield has this text: " + textState.value.text)
+            Text("Enter the Redis port:")
+
+            TextField(
+                value = "6379",
+                onValueChange = {},
+                readOnly = true
+            )
+
+            Button(
+                onClick = {
+
+                },
+                colors = ButtonDefaults
+                    .textButtonColors(
+                        backgroundColor = Color.Red
+                    )
+            ) {
+                Text("Click to connect!")
+            }
         }
     }
 }
 
 fun main() = application {
-    val stream = URL("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv8Tg3nhk8LFg5HeT7Uzb3m0zNM0_gphSD5W1s47iRshELk3vmXZK1a_VGHpdRho010yo&usqp=CAU").openStream()
+    val stream =
+        URL("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv8Tg3nhk8LFg5HeT7Uzb3m0zNM0_gphSD5W1s47iRshELk3vmXZK1a_VGHpdRho010yo&usqp=CAU").openStream()
 
     Window(
         onCloseRequest = ::exitApplication,
