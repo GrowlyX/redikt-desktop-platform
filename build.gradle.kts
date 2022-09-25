@@ -7,7 +7,7 @@ plugins {
     id("org.jetbrains.compose")
 }
 
-group = "io.liftgate.redikt"
+group = "io.liftgate.redify"
 version = "1.0.0"
 
 repositories {
@@ -40,7 +40,7 @@ kotlin {
 
 compose.desktop {
     application {
-        mainClass = "MainKt"
+        mainClass = "RedifyAppKt"
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
