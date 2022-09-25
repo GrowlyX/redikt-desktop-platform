@@ -31,12 +31,17 @@ kotlin {
             }
         }
         val jvmTest by getting
+
+        jvmMain.dependencies {
+            implementation("io.lettuce:lettuce-core:6.2.0.RELEASE")
+        }
     }
 }
 
 compose.desktop {
     application {
         mainClass = "MainKt"
+
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
 
